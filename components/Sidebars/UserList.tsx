@@ -3,117 +3,75 @@ import React from "react";
 
 const user = [
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
   {
-    profile: "/userAvatar.png",
+    profile: "/icons/userAvatar.png",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
     unseen: "2"
   },
-  {
-    profile: "/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  }
 ];
 
 const UserList = () => {
@@ -132,7 +90,7 @@ const UserList = () => {
               alt={user.name}
               width={20}
               height={20}
-              className="h-10 w-10 rounded-full border-2 border-green-500"
+              className="h-10 w-10 rounded-full border-2 border-green-400"
             />
             <div className="w-full flex flex-col">
               <span className="text-xl font-bold">{user.name}</span>
@@ -147,7 +105,7 @@ const UserList = () => {
             </div>
           </div>
           {unseen && (
-            <span className="bg-green-600 font-bold text-lg h-5 w-5 flex justify-center items-center rounded-full">
+            <span className="bg-green-400 font-bold text-lg h-5 w-5 flex justify-center items-center rounded-full">
               {user.unseen}
             </span>
           )}

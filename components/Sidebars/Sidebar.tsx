@@ -4,6 +4,10 @@ import SidebarHeader from "./SidebarHeader";
 import UserList from "./UserList";
 import CallList from "./CallList";
 import { usePage } from "@/contexts/PageContext";
+import { Link2 } from "lucide-react";
+import StatusList from "./StatusList";
+import FavouritesList from "./FavouritesList";
+import ArchiveList from "./ArchiveList";
 
 const Sidebar = () => {
   const { page } = usePage();
@@ -31,6 +35,15 @@ const Sidebar = () => {
             showSearch={true}
           />
           <div className="divider" />
+          <div className="flex gap-8 cursor-pointer p-2 hover:bg-slate-800 rounded justify-center items-center w-full">
+            <Link2 />
+            <div className="flex items-start flex-col">
+              <p className="text-xl font-bold">Create Call Link</p>
+              <p className="text-lg text-gray-400">
+                Share the link for your call
+              </p>
+            </div>
+          </div>
           <CallList />
         </>
       )}
@@ -43,7 +56,7 @@ const Sidebar = () => {
             showSearch={false}
           />
           <div className="divider" />
-          <CallList />
+          <StatusList />
         </>
       )}
       {page == "Favourites" && (
@@ -55,7 +68,7 @@ const Sidebar = () => {
             showSearch={true}
           />
           <div className="divider" />
-          <CallList />
+          <FavouritesList />
         </>
       )}
       {page == "Archive" && (
@@ -67,7 +80,7 @@ const Sidebar = () => {
             showSearch={true}
           />
           <div className="divider" />
-          <CallList />
+          <ArchiveList />
         </>
       )}
     </div>

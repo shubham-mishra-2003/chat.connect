@@ -12,7 +12,7 @@ const PageContext = createContext<PageContextProps | undefined>(undefined);
 export const PageProvider: React.FC<{ children: React.ReactNode }> = ({
   children
 }) => {
-  const [page, setPage] = useState("Chats");
+  const [page, setPage] = useState("Favourites");
   return (
     <PageContext.Provider value={{ page, setPage }}>
       {children}

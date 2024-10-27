@@ -10,7 +10,7 @@ const OptionsSidebar: React.FC = () => {
   const [isShow, setIsShow] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
-  const { setPage } = usePage();
+  const { page, setPage } = usePage();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -55,10 +55,13 @@ const OptionsSidebar: React.FC = () => {
                 setIsShow(false);
               }}
               key={index}
-              className={`flex items-center cursor-default gap-5 h-10 hover:bg-slate-800 p-2 rounded-[10px] ${
+              className={`flex items-center cursor-default gap-5 h-10 relative hover:bg-slate-800 p-2 rounded-[10px] ${
                 isShow ? "w-full" : "w-fit"
-              }`}
+              } ${page == item.page && "bg-slate-800"}`}
             >
+              {page == item.page && (
+                <span className="h-[70%] w-1 -mr-4 bg-green-400 rounded-full absolute top-[6px] left-1"></span>
+              )}
               <item.icon height={20} width={30} />
               {isShow && item.title}
             </div>
@@ -74,10 +77,13 @@ const OptionsSidebar: React.FC = () => {
                   setIsShow(false);
                 }}
                 key={index}
-                className={`flex items-center cursor-default gap-5 h-10 hover:bg-slate-800 p-2 rounded-[10px] ${
+                className={`flex items-center cursor-default gap-5 h-10 hover:bg-slate-800 p-2 relative rounded-[10px] ${
                   isShow ? "w-full" : "w-fit"
-                }`}
+                } ${page == item.page && "bg-slate-800"}`}
               >
+                {page == item.page && (
+                  <span className="h-[70%] w-1 -mr-4 bg-green-400 rounded-full absolute top-[6px] left-1"></span>
+                )}
                 <item.icon height={20} width={30} />
                 {isShow && item.title}
               </div>
