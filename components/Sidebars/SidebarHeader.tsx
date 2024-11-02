@@ -16,7 +16,7 @@ const SidebarHeader = ({
   showSearch
 }: SidebarHeaderProps) => {
   return (
-    <div>
+    <div className="flex flex-col min-h-fit">
       <div className="flex justify-between items-center p-4">
         <h1 className="text-3xl font-serif font-extrabold">{heading}</h1>
         <div className="flex gap-2 items-center justify-center">

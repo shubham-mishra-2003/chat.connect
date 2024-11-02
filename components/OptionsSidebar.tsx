@@ -91,7 +91,7 @@ const OptionsSidebar: React.FC = () => {
           </div>
           <div className="divider"></div>
           <div className="flex gap-1 flex-col">
-            {SidebarContent.slice(5, 7).map((item, index) => (
+            {SidebarContent.slice(5).map((item, index) => (
               <Popover key={index}>
                 <PopoverTrigger
                   title={item.title}
@@ -102,7 +102,21 @@ const OptionsSidebar: React.FC = () => {
                   <item.icon height={20} width={30} />
                   {isShow && item.title}
                 </PopoverTrigger>
-                <PopoverContent>Hi</PopoverContent>
+                <PopoverContent></PopoverContent>
+              </Popover>
+            ))}
+            {SidebarContent.slice(7).map((item, index) => (
+              <Popover key={index}>
+                <PopoverTrigger
+                  title={item.title}
+                  className={`flex items-center cursor-default gap-5 h-10 hover:bg-slate-800 p-2 rounded-[10px] ${
+                    isShow ? "w-full" : "w-fit"
+                  }`}
+                >
+                  <item.icon height={20} width={30} />
+                  {isShow && item.title}
+                </PopoverTrigger>
+                <PopoverContent></PopoverContent>
               </Popover>
             ))}
           </div>

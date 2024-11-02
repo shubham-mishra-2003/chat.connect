@@ -79,7 +79,7 @@ const FavouritesList = () => {
           {starred.map((favourite, index) => (
             <div
               key={index}
-              className="flex justify-between items-center gap-2 p-2 px-10 hover:bg-slate-800 rounded-xl cursor-pointer"
+              className="flex justify-between items-center gap-2 p-2 px-5 hover:bg-slate-800 rounded-xl cursor-pointer"
             >
               <div className="flex flex-col">
                 <span className="text-xl font-bold">{favourite.user}</span>

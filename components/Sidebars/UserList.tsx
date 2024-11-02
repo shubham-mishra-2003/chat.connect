@@ -1,87 +1,21 @@
+import { users } from "@/constants";
+import { useChat } from "@/contexts/ChatContext";
 import Image from "next/image";
 import React from "react";
 
-const user = [
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-  {
-    profile: "/icons/userAvatar.png",
-    name: "Shubham mishra",
-    lastMessage: "Hi",
-    lastMessageTime: "02:32AM",
-    unseen: "2"
-  },
-];
-
 const UserList = () => {
-  const unseen = true;
+  const { setChatId } = useChat();
+
+  const Users = users.filter((user) => !user.archived);
 
   return (
     <div className="flex flex-col gap-1 items-center overflow-y-auto h-full p-2">
-      {user.map((user, index) => (
+      {Users.map((user, index) => (
         <div
           key={index}
+          onClick={() => {
+            setChatId(user.id);
+          }}
           className="flex items-center justify-between w-full hover:bg-slate-800 rounded-xl p-2 cursor-pointer"
         >
           <div className="flex items-center gap-3">
@@ -104,8 +38,8 @@ const UserList = () => {
               </div>
             </div>
           </div>
-          {unseen && (
-            <span className="bg-green-400 font-bold text-lg h-5 w-5 flex justify-center items-center rounded-full">
+          {user.unseen && (
+            <span className="bg-green-500 font-bold text-lg h-5 w-5 flex justify-center items-center rounded-full text-gray-600">
               {user.unseen}
             </span>
           )}
