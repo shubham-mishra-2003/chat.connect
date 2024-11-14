@@ -5,6 +5,8 @@ import React, { useState, useEffect, useRef } from "react";
 import SidebarContent from "../constants/index";
 import { usePage } from "@/contexts/PageContext";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import Modal from "./Sidebars/Modal";
+import { useTheme } from "next-themes";
 
 const OptionsSidebar: React.FC = () => {
   const [isShow, setIsShow] = useState(false);
@@ -32,13 +34,21 @@ const OptionsSidebar: React.FC = () => {
     };
   }, [isShow]);
 
+  const { resolvedTheme } = useTheme();
+
   return (
     <div
       ref={sidebarRef}
-      className="flex py-2 w-fit flex-col h-screen rounded-md bg-slate-950"
+      className={`flex py-2 w-fit flex-col h-screen rounded-md ${
+        resolvedTheme == "dark" ? "bg-slate-900" : "bg-slate-300"
+      }`}
     >
       <Menu
-        className="h-8 p-1 w-8 text-white m-3 mt-12 hover:bg-slate-800 rounded"
+        className={`h-8 p-1 w-8 m-3 mt-12 rounded ${
+          resolvedTheme == "dark"
+            ? "hover:bg-slate-700 text-white"
+            : "hover:bg-slate-100 text-black"
+        }`}
         height={30}
         width={30}
         onClick={() => {
@@ -55,12 +65,24 @@ const OptionsSidebar: React.FC = () => {
                 setIsShow(false);
               }}
               key={index}
-              className={`flex items-center cursor-default gap-5 h-10 relative hover:bg-slate-800 p-2 rounded-[10px] ${
+              className={`flex items-center cursor-default gap-5 h-10 relative p-2 rounded-[10px] ${
                 isShow ? "w-full" : "w-fit"
-              } ${page == item.page && "bg-slate-800"}`}
+              } ${
+                resolvedTheme == "dark"
+                  ? `${
+                      page == item.page && "bg-slate-700"
+                    } hover:bg-slate-700 text-white`
+                  : `${
+                      page == item.page && "bg-slate-100"
+                    } hover:bg-slate-100 text-slate-900`
+              }`}
             >
               {page == item.page && (
-                <span className="h-[70%] w-1 -mr-4 bg-green-400 rounded-full absolute top-[6px] left-1"></span>
+                <span
+                  className={`h-[70%] w-1 -mr-4 rounded-full absolute top-[6px] left-1 ${
+                    resolvedTheme == "dark" ? "bg-green-400" : "bg-green-600"
+                  }`}
+                ></span>
               )}
               <item.icon height={20} width={30} />
               {isShow && item.title}
@@ -77,9 +99,17 @@ const OptionsSidebar: React.FC = () => {
                   setIsShow(false);
                 }}
                 key={index}
-                className={`flex items-center cursor-default gap-5 h-10 hover:bg-slate-800 p-2 relative rounded-[10px] ${
+                className={`flex items-center cursor-default gap-5 h-10 relative p-2 rounded-[10px] ${
                   isShow ? "w-full" : "w-fit"
-                } ${page == item.page && "bg-slate-800"}`}
+                } ${
+                  resolvedTheme == "dark"
+                    ? `${
+                        page == item.page && "bg-slate-700"
+                      } hover:bg-slate-700 text-white`
+                    : `${
+                        page == item.page && "bg-slate-100"
+                      } hover:bg-slate-100 text-slate-900`
+                }`}
               >
                 {page == item.page && (
                   <span className="h-[70%] w-1 -mr-4 bg-green-400 rounded-full absolute top-[6px] left-1"></span>
@@ -90,36 +120,26 @@ const OptionsSidebar: React.FC = () => {
             ))}
           </div>
           <div className="divider"></div>
-          <div className="flex gap-1 flex-col">
-            {SidebarContent.slice(5).map((item, index) => (
-              <Popover key={index}>
-                <PopoverTrigger
-                  title={item.title}
-                  className={`flex items-center cursor-default gap-5 h-10 hover:bg-slate-800 p-2 rounded-[10px] ${
-                    isShow ? "w-full" : "w-fit"
-                  }`}
-                >
-                  <item.icon height={20} width={30} />
-                  {isShow && item.title}
-                </PopoverTrigger>
-                <PopoverContent></PopoverContent>
-              </Popover>
-            ))}
-            {SidebarContent.slice(7).map((item, index) => (
-              <Popover key={index}>
-                <PopoverTrigger
-                  title={item.title}
-                  className={`flex items-center cursor-default gap-5 h-10 hover:bg-slate-800 p-2 rounded-[10px] ${
-                    isShow ? "w-full" : "w-fit"
-                  }`}
-                >
-                  <item.icon height={20} width={30} />
-                  {isShow && item.title}
-                </PopoverTrigger>
-                <PopoverContent></PopoverContent>
-              </Popover>
-            ))}
-          </div>
+          {SidebarContent.slice(5).map((item, index) => (
+            <Popover key={index}>
+              <PopoverTrigger
+                title={item.title}
+                className={`flex items-center cursor-default gap-5 h-10 relative p-2 rounded-[10px] ${
+                  isShow ? "w-full" : "w-fit"
+                } ${
+                  resolvedTheme == "dark"
+                    ? "hover:bg-slate-700 text-white"
+                    : "hover:bg-slate-100 text-slate-900"
+                }`}
+              >
+                <item.icon height={20} width={30} />
+                {isShow && item.title}
+              </PopoverTrigger>
+              <PopoverContent className="border-none p-0">
+                <Modal />
+              </PopoverContent>
+            </Popover>
+          ))}
         </div>
       </div>
     </div>

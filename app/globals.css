@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +9,7 @@
   padding: 0;
   box-sizing: border-box;
   user-select: none;
-  font-family: serif;
+  font-family: "Itim", cursive;
 }
 
 *::-webkit-scrollbar {
@@ -22,9 +24,9 @@
 
 .divider {
   margin: 8px;
-  background-color: #cbd5e1;
+  background-color: #64748b;
   display: flex;
-  height: 1px;
+  height: 2px;
   border-radius: 12px;
 }
 
@@ -32,4 +34,13 @@
   background: transparent;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(4px);
+}
+
+@layer greentext {
+  .light-green {
+    @apply text-green-600;
+  }
+  .dark-green {
+    @apply text-green-400;
+  }
 }

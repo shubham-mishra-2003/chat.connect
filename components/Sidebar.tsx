@@ -1,16 +1,19 @@
 "use client";
 
-import SidebarHeader from "./SidebarHeader";
-import UserList from "./UserList";
-import CallList from "./CallList";
+import SidebarHeader from "./Sidebars/SidebarHeader";
+import UserList from "./Sidebars/UserList";
+import CallList from "./Sidebars/CallList";
 import { usePage } from "@/contexts/PageContext";
 import { Link2 } from "lucide-react";
-import StatusList from "./StatusList";
-import FavouritesList from "./FavouritesList";
-import ArchiveList from "./ArchiveList";
+import StatusList from "./Sidebars/StatusList";
+import FavouritesList from "./Sidebars/FavouritesList";
+import ArchiveList from "./Sidebars/ArchiveList";
+import { useTheme } from "next-themes";
 
 const Sidebar = () => {
   const { page } = usePage();
+
+  const {resolvedTheme} = useTheme();
 
   return (
     <div className="flex flex-col h-full">
@@ -35,11 +38,11 @@ const Sidebar = () => {
             showSearch={true}
           />
           <div className="divider" />
-          <div className="flex gap-8 cursor-pointer p-2 hover:bg-slate-800 rounded justify-center items-center w-full">
+          <div className={`flex gap-8 cursor-pointer p-2 rounded justify-center items-center w-full ${resolvedTheme == "dark" ? 'hover:bg-slate-700 text-slate-300' : 'hover:bg-slate-300 text-slate-600'}`}>
             <Link2 />
             <div className="flex items-start flex-col">
               <p className="text-xl font-bold">Create Call Link</p>
-              <p className="text-lg text-gray-400">
+              <p className="text-lg text-gray-500">
                 Share the link for your call
               </p>
             </div>

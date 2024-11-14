@@ -12,7 +12,7 @@ const ChatContext = createContext<ChatContextProps | undefined>(undefined);
 export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({
   children
 }) => {
-  const [chatId, setChatId] = useState(0);
+  const [chatId, setChatId] = useState(1);
   return (
     <ChatContext.Provider value={{ chatId, setChatId }}>
       {children}

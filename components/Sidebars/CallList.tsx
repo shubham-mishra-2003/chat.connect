@@ -1,4 +1,5 @@
 import { PhoneIncoming, PhoneOutgoing } from "lucide-react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import React from "react";
 
@@ -69,12 +70,15 @@ const calls = [
 ];
 
 const CallList = () => {
+
+  const {resolvedTheme} = useTheme();
+
   return (
     <div className="flex flex-col h-full overflow-y-auto gap-1 p-2">
       {calls.map((caller, index) => (
         <div
           key={index}
-          className="flex px-2 items-center rounded-xl hover:bg-slate-800 w-full"
+          className={`flex px-2 items-center rounded-xl w-full ${resolvedTheme == "dark" ? 'hover:bg-slate-700 text-slate-300' : 'hover:bg-slate-300 text-slate-700'}`}
         >
           <div className="flex w-full gap-2 p-2 items-center">
             <Image
@@ -95,7 +99,7 @@ const CallList = () => {
                       height={20}
                       width={20}
                       alt="video call"
-                      className="invert"
+                      className={`${resolvedTheme == "dark" && 'invert'}`}
                     />
                   )}
                   <span>Incoming</span>
@@ -110,7 +114,7 @@ const CallList = () => {
                       height={20}
                       width={20}
                       alt="video call"
-                      className="invert"
+                      className={`${resolvedTheme == "dark" && 'invert'}`}
                     />
                   )}
                   <span>Outgoing</span>
