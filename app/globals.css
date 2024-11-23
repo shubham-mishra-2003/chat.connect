@@ -8,18 +8,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  user-select: none;
+  /* user-select: none; */
   font-family: "Itim", cursive;
-}
-
-*::-webkit-scrollbar {
-  width: 3px;
-  background: transparent;
-}
-*::-webkit-scrollbar-thumb {
-  width: 100%;
-  background-color: #3b82f6;
-  border-radius: 20px;
+  scrollbar-width: thin;
+  outline: none;
 }
 
 .divider {
@@ -30,12 +22,6 @@
   border-radius: 12px;
 }
 
-.transparent-bg {
-  background: transparent;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-}
-
 @layer greentext {
   .light-green {
     @apply text-green-600;
@@ -43,4 +29,8 @@
   .dark-green {
     @apply text-green-400;
   }
+}
+
+.auth-input {
+  @apply w-full dark:bg-slate-700 bg-green-50 focus-visible:bg-green-100 rounded-lg px-5 py-3 text-xl dark:text-slate-100 text-slate-800 border-[1px] border-green-400 focus-visible:outline-green-400 outline-2;
 }

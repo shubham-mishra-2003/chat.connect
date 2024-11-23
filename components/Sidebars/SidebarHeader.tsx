@@ -50,6 +50,7 @@ const SidebarHeader = ({
               alt="user profile"
               height={20}
               width={45}
+              className="rounded-full"
             />
             <div className="flex flex-col">
               <span className="text-xl font-bold font-serif">My Status</span>

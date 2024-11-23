@@ -1,15 +1,12 @@
 import { users } from "@/constants";
 import { useChat } from "@/contexts/ChatContext";
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import React from "react";
 
 const ArchiveList = () => {
-  const { setChatId } = useChat();
+  const { chatId, setChatId } = useChat();
 
   const Users = users.filter((user) => user.archived);
-
-  const { resolvedTheme } = useTheme();
 
   return (
     <div className="flex flex-col gap-1 items-center overflow-y-auto h-full p-2 overflow-hidden">
@@ -21,10 +18,8 @@ const ArchiveList = () => {
               setChatId(user.id);
             }}
             onContextMenu={() => alert(`Hello ${user.name}`)} // Double click options
-            className={`flex items-center gap-3 justify-between w-full rounded-xl p-2 px-3 cursor-pointer ${
-              resolvedTheme == "dark"
-                ? "hover:bg-slate-700 text-slate-300"
-                : "hover:bg-slate-300 text-slate-600"
+            className={`flex items-center gap-3 dark:text-slate-100 text-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 justify-between w-full rounded-xl p-2 px-3 cursor-pointer ${
+              chatId == user.id && "dark:bg-slate-700 bg-slate-300"
             }`}
           >
             <div className="flex items-center gap-3 w-full">

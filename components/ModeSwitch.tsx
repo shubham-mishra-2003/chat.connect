@@ -49,7 +49,7 @@ const ModeSwitch = () => {
   if (!mounted) return "Loading...";
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover I onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <div
           className={`font-bold flex p-3 rounded-xl w-60 items-center justify-between ${
@@ -77,12 +77,7 @@ const ModeSwitch = () => {
                   key={mode.value}
                   value={mode.value}
                   onSelect={() => handleThemeChange(mode.value)}
-                  className={`${
-                    resolvedTheme === "dark"
-                      ? "hover:shadow-black"
-                      : "hover:shadow-slate-400"
-                  } hover:shadow-inner rounded-[10px] font-semibold cursor-pointer gap-2 flex w-full text-sm`}
-                >
+                  className="rounded-[10px] font-semibold cursor-pointer gap-2 flex w-full text-sm dark:hover:bg-cyan-400 hover:text-black bg-transparent hover:bg-cyan-600">
                   <Check
                     className={`mr-2 h-4 w-4 ${
                       theme === mode.value ? "opacity-100" : "opacity-0"

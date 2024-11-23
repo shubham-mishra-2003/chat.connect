@@ -28,6 +28,7 @@ const ChatHeader = () => {
           alt="profile"
           height={45}
           width={45}
+          className="rounded-full"
         />
         <div className="flex flex-col">
           <span

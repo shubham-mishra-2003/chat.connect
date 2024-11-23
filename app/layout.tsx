@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PageProvider } from "@/contexts/PageContext";
-// import DisableRightClick from "@/components/DisableRightClick";
 import { ThemeProvider } from "next-themes";
 import { ChatWallpaperProvider } from "@/contexts/ChatWallpaper";
 import LayoutComponent from "@/components/LayoutComponent";
+import { Toaster } from "react-hot-toast";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
+import Home from "@/components/Home";
 
 export const metadata: Metadata = {
-  title: "ChatAPP | Shubham mishra",
+  title: "ChatAPP | Shubham Mishra",
   description: "Chat Application with audio and video calls"
 };
 
@@ -17,20 +19,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <PageProvider>
-      <html lang="en">
-        <head>
-          <link rel="manifest" href="/manifest.json" />
-        </head>
-        <body className="h-screen bg-gray-900 text-slate-200">
-          <ThemeProvider>
-            <ChatWallpaperProvider>
-              <LayoutComponent>{children}</LayoutComponent>
-            </ChatWallpaperProvider>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning={true}>
+        <body className="h-screen dark:bg-slate-800 bg-[#edf6ff]">
+          <ThemeProvider attribute="class">
+            <PageProvider>
+              <Toaster position="top-right" />
+              <SignedOut>
+                <Home />
+              </SignedOut>
+              <SignedIn>
+                <ChatWallpaperProvider>
+                  <LayoutComponent>{children}</LayoutComponent>
+                </ChatWallpaperProvider>
+              </SignedIn>
+            </PageProvider>
           </ThemeProvider>
         </body>
-        {/* <DisableRightClick /> */}
       </html>
-    </PageProvider>
+    </ClerkProvider>
   );
 }

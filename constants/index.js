@@ -66,27 +66,7 @@ export const modalSidebar = [
   }
 ];
 
-export const ChatBackgrounds = [
-  "bg-slate-900",
-  "bg-slate-200",
-  "bg-gradient-to-tr to-purple-300 from-blue-300",
-  "bg-gradient-to-tr to-blue-500 from-purple-500",
-  "bg-gradient-to-br to-yellow-100 from-orange-400",
-  "bg-gradient-to-br to-lime-400 from-emerald-500",
-  "bg-gradient-to-bl from-red-500 to-amber-600",
-  "bg-gradient-to-tl to-teal-500 from-cyan-500",
-  "bg-gradient-to-tr from-sky-800 to-indigo-500",
-  "bg-gradient-to-tr from-pink-400 to-purple-400",
-  "bg-gradient-to-b to-violet-700 from-cyan-300",
-  "bg-gradient-to-br to-cyan-400 from-teal-500",
-  "bg-gradient-to-r from-blue-200 via-purple-300 to-purple-400",
-  "bg-gradient-to-tr from-orange-200 via-red-300 to-red-400",
-  "bg-gradient-to-bl from-teal-200 via-green-300 to-green-400",
-  "bg-gradient-to-r from-pink-200 via-pink-300 to-rose-300",
-  "bg-gradient-to-r from-purple-200 via-indigo-300",
-  "bg-gradient-to-r from-red-200 via-yellow-200 to-green-200 dark:from-red-500 dark:via-yellow-500 dark:to-green-500 bg-[length:200%_200%] animate-gradient"
-];
-
+// To be removed
 export const users = [
   {
     id: 1,
@@ -133,5 +113,58 @@ export const users = [
     isOnline: true
   }
 ];
+
+
+// To be removed
+export const messages = [
+  {
+    sender: 1,
+    recipient: 2,
+    message: "Hi",
+    time: "02:32AM",
+    seen: true
+  },
+  {
+    sender: 2,
+    recipient: 1,
+    message: "Hello",
+    time: "03:00AM",
+    seen: true
+  },
+  {
+    sender: 1,
+    recipient: 2,
+    message: "What's up?",
+    time: "03:32AM",
+    seen: true
+  },
+  {
+    sender: 2,
+    recipient: 1,
+    message: "Fine...😊",
+    time: "03:40AM",
+    seen: true
+  },
+  {
+    sender: 1,
+    recipient: 2,
+    message: "Sahi hai...🫡",
+    time: "03:40AM",
+    seen: false
+  }
+];
+
+
+// To be removed
+export const currentUser = {
+  id: 1,
+  profile: "/icons/userAvatar.png",
+  name: "Shubham mishra",
+  lastMessage: "Hi",
+  lastMessageTime: "02:32AM",
+  archived: false,
+  lastseen: "03:00pm",
+  isOnline: false
+};
 
 export default SidebarContent;

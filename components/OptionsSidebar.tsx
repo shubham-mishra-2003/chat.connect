@@ -4,9 +4,9 @@ import { Menu } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import SidebarContent from "../constants/index";
 import { usePage } from "@/contexts/PageContext";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import Modal from "./Sidebars/Modal";
+import Profile from "./Sidebars/Profile";
 import { useTheme } from "next-themes";
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "./ui/drawer";
 
 const OptionsSidebar: React.FC = () => {
   const [isShow, setIsShow] = useState(false);
@@ -121,8 +121,8 @@ const OptionsSidebar: React.FC = () => {
           </div>
           <div className="divider"></div>
           {SidebarContent.slice(5).map((item, index) => (
-            <Popover key={index}>
-              <PopoverTrigger
+            <Drawer key={index}>
+              <DrawerTrigger
                 title={item.title}
                 className={`flex items-center cursor-default gap-5 h-10 relative p-2 rounded-[10px] ${
                   isShow ? "w-full" : "w-fit"
@@ -134,11 +134,12 @@ const OptionsSidebar: React.FC = () => {
               >
                 <item.icon height={20} width={30} />
                 {isShow && item.title}
-              </PopoverTrigger>
-              <PopoverContent className="border-none p-0">
-                <Modal />
-              </PopoverContent>
-            </Popover>
+              </DrawerTrigger>
+              <DrawerContent className="border-none p-0 w-fit">
+                <DrawerTitle hidden>Drawer</DrawerTitle>
+                <Profile />
+              </DrawerContent>
+            </Drawer>
           ))}
         </div>
       </div>
