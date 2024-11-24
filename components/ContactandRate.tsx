@@ -1,5 +1,5 @@
 import { useUser } from "@clerk/nextjs";
-import { Star, X } from "lucide-react";
+import { Star } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import {
@@ -12,10 +12,6 @@ import {
 
 const ContactandRate = ({ formType }: { formType: string }) => {
   const { user } = useUser();
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -97,6 +93,10 @@ const ContactandRate = ({ formType }: { formType: string }) => {
     }
   }
 
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger
@@ -114,53 +114,60 @@ const ContactandRate = ({ formType }: { formType: string }) => {
         <DialogDescription>
           <div>
             {formType == "contact" && (
-              <form
-                onSubmit={handleContactSubmit}
-                className="size-full flex flex-col gap-2"
-              >
-                <label className="flex text-xl gap-1 justify-center flex-col w-full">
-                  Your Name
-                  <input
-                    disabled
-                    type="text"
-                    className="bg-slate-100 p-2 rounded-lg dark:bg-slate-700 focus-visible:outline focus-visible:outline-green-500 text-lg"
-                    name="name"
-                    defaultValue={user?.fullName ?? ""}
-                  />
-                </label>
-                <label className="flex text-xl gap-1 justify-center flex-col w-full">
-                  Your Username
-                  <input
-                    disabled
-                    className="bg-slate-100 p-2 rounded-lg dark:bg-slate-700 focus-visible:outline focus-visible:outline-green-500 text-lg"
-                    type="text"
-                    name="email"
-                    defaultValue={user?.username ?? ""}
-                  />
-                </label>
-                <label className="flex text-xl gap-1 justify-center flex-col w-full">
-                  Message
-                  <textarea
-                    rows={4}
-                    placeholder="Let us know how we can help you"
-                    className="bg-slate-100 p-2 resize-none rounded-lg dark:bg-slate-700 focus-visible:outline focus-visible:outline-green-500 text-lg"
-                    name="message"
-                  />
-                </label>
-                <button
-                  type="submit"
-                  className="w-full p-2 text-lg rounded-lg bg-green-600 text-white dark:bg-green-400 dark:text-black"
+              <div className="flex flex-col gap-2 w-full">
+                <form
+                  onSubmit={handleContactSubmit}
+                  className="size-full flex flex-col gap-2"
                 >
-                  {isSubmitting ? "Sending" : "Send"}
-                </button>
-              </form>
+                  <label className="hidden text-xl gap-1 justify-center flex-col w-full">
+                    Your Name
+                    <input
+                      disabled
+                      type="text"
+                      className="bg-slate-100 p-2 rounded-lg dark:bg-slate-700 focus-visible:outline focus-visible:outline-green-500 text-lg"
+                      name="name"
+                      defaultValue={user?.fullName ?? ""}
+                    />
+                  </label>
+                  <label className="hidden text-xl gap-1 justify-center flex-col w-full">
+                    Your Username
+                    <input
+                      disabled
+                      className="bg-slate-100 p-2 rounded-lg dark:bg-slate-700 focus-visible:outline focus-visible:outline-green-500 text-lg"
+                      type="text"
+                      name="email"
+                      defaultValue={user?.username ?? ""}
+                    />
+                  </label>
+                  <label className="flex text-xl gap-1 justify-center flex-col w-full">
+                    Message
+                    <textarea
+                      rows={4}
+                      placeholder="Let us know how we can help you"
+                      className="bg-slate-100 p-2 resize-none rounded-lg dark:bg-slate-700 focus-visible:outline focus-visible:outline-green-500 text-lg"
+                      name="message"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    className="w-full p-2 text-lg rounded-lg bg-green-600 text-white dark:bg-green-400 dark:text-black"
+                  >
+                    {isSubmitting ? "Sending" : "Send"}
+                  </button>
+                </form>
+                <span className="text-xl">
+                  By clicking Send, you acknowledge connect may review the
+                  metadata associated with your account, to troubleshoot and
+                  solve the reported issue.
+                </span>
+              </div>
             )}
             {formType == "feedback" && (
               <form
                 onSubmit={handleRatingSubmit}
                 className="size-full flex flex-col gap-2"
               >
-                <label className="flex text-xl gap-1 justify-center flex-col w-full">
+                <label className="hidden text-xl gap-1 justify-center flex-col w-full">
                   Your Name
                   <input
                     disabled
@@ -170,7 +177,7 @@ const ContactandRate = ({ formType }: { formType: string }) => {
                     defaultValue={user?.fullName ?? ""}
                   />
                 </label>
-                <label className="flex text-xl gap-1 justify-center flex-col w-full">
+                <label className="hidden text-xl gap-1 justify-center flex-col w-full">
                   Your Username
                   <input
                     disabled
@@ -180,7 +187,7 @@ const ContactandRate = ({ formType }: { formType: string }) => {
                     defaultValue={user?.username ?? ""}
                   />
                 </label>
-                <label className="flex text-xl gap-1 justify-center flex-col w-full">
+                <label className="text-xl gap-1 justify-center flex-col w-full">
                   Your Rating
                   <div className="flex w-full justify-center items-center gap-5">
                     {[1, 2, 3, 4, 5].map((star) => (

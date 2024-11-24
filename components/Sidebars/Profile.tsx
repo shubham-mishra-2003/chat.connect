@@ -17,25 +17,30 @@ import toast from "react-hot-toast";
 import Image from "next/image";
 import { Check, Edit, Pen, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Command, CommandList, CommandGroup, CommandItem } from "../ui/command";
 import ContactandRate from "../ContactandRate";
 
-const ImageOptions = [
-  {
-    command: "",
-    title: "Remove image"
-  },
-  {
-    command: "",
-    title: "View image"
-  },
-  {
-    command: "",
-    title: "Change image"
-  }
-];
-
 const Profile = () => {
+  const ImageOptions = [
+    {
+      command: () => {
+        setOpenPopover({ profileChange: true });
+      },
+      title: "Remove image"
+    },
+    {
+      command: () => {
+        setOpenPopover({ profileChange: true });
+      },
+      title: "View image"
+    },
+    {
+      command: () => {
+        setOpenPopover({ profileChange: true });
+      },
+      title: "Change image"
+    }
+  ];
+
   const [page, setPage] = useState("profile");
   const { resolvedTheme } = useTheme();
   const { user, isSignedIn } = useUser();
@@ -44,6 +49,15 @@ const Profile = () => {
     fullname: `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim(),
     username: user?.username ?? ""
   });
+  const [openPopover, setOpenPopover] = useState({
+    profileChange: false
+  });
+
+  // const changeProfile = () => {
+  //   await user?.setProfileImage({
+  //     file: ,
+  //   })
+  // }
 
   const [edit, setEdit] = useState({
     name: false,
@@ -200,7 +214,7 @@ const Profile = () => {
                 <Popover>
                   <PopoverTrigger className="w-fit group border-2 border-green-500 rounded-full relative">
                     <Image
-                      src="/icons/userAvatar.png"
+                      src={user.imageUrl}
                       alt=""
                       height={100}
                       width={100}
@@ -210,24 +224,70 @@ const Profile = () => {
                       <Edit className="text-white" />
                     </div>
                   </PopoverTrigger>
-                  <PopoverContent className="dark:bg-slate-800 bg-slate-200 w-32 p-0">
-                    <Command className="bg-transparent">
-                      <CommandList>
-                        <CommandGroup>
-                          {ImageOptions.map((options, index) => (
-                            <CommandItem
-                              key={index}
-                              onClick={() => options.command}
-                              className="bg-transparent dark:text-white text-slate-800 rounded"
-                            >
-                              {options.title}
-                            </CommandItem>
-                          ))}
-                        </CommandGroup>
-                      </CommandList>
-                    </Command>
+                  <PopoverContent className="dark:bg-slate-800 bg-slate-200 w-32 p-1 flex flex-col gap-1">
+                    {ImageOptions.map((options, index) => (
+                      <div
+                        key={index}
+                        onClick={() => {
+                          options.command();
+                        }}
+                        className="bg-transparent dark:text-white text-slate-800 rounded cursor-pointer p-1 px-2 hover:bg-slate-600"
+                      >
+                        {options.title}
+                      </div>
+                    ))}
                   </PopoverContent>
                 </Popover>
+                {/* Image popover */}
+                <Dialog
+                  open={openPopover.profileChange}
+                  onOpenChange={() =>
+                    setOpenPopover((prev) => ({
+                      ...prev,
+                      profileChange: !prev.profileChange
+                    }))
+                  }
+                >
+                  <DialogContent className="dark:bg-slate-800 bg-slate-200 text-slate-800 dark:text-slate-200">
+                    <DialogTitle className="text-2xl">
+                      Want to remove profile ?
+                    </DialogTitle>
+                    <DialogFooter className="w-full">
+                      <div className="w-full flex gap-3 justify-center items-center">
+                        <button
+                          onClick={() =>
+                            setOpenPopover({ profileChange: false })
+                          }
+                          className="w-full bg-slate-700 p-1 rounded-lg"
+                        >
+                          No
+                        </button>
+                        <button
+                          onClick={async () => {
+                            if (user) {
+                              try {
+                                await user.setProfileImage({
+                                  file: "/public/icons/avatarInitial.png"
+                                });
+                                toast.success("Profile photo removed");
+                              } catch (error) {
+                                toast.error(
+                                  `Error removing profile photo : ${error}`
+                                );
+                                console.error(
+                                  `Error removing profile photo : ${error}`
+                                );
+                              }
+                            }
+                          }}
+                          className="w-full bg-green-500 p-1 rounded-lg"
+                        >
+                          Yes
+                        </button>
+                      </div>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
               <div className="flex flex-col gap-4 w-full dark:text-slate-200 text-slate-700 text-2xl">
                 {edit.name ? (
@@ -421,7 +481,7 @@ const Profile = () => {
                   <DialogHeader className="text-3xl font-bold">
                     Logout confirmation
                   </DialogHeader>
-                    Are you sure you want to logout ?
+                  Are you sure you want to logout ?
                   <DialogFooter className="w-full flex justify-center items-center gap-3">
                     <DialogClose className="whitespace-nowrap w-full p-2 rounded-[10px] border-[2px] border-slate-500 dark:bg-slate-700 bg-slate-300">
                       cancel

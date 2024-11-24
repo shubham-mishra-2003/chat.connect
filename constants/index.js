@@ -70,7 +70,7 @@ export const modalSidebar = [
 export const users = [
   {
     id: 1,
-    profile: "/icons/userAvatar.png",
+    profile: "/icons/avatar.jpeg",
     name: "Shubham mishra",
     lastMessage: "Hi",
     lastMessageTime: "02:32AM",
@@ -114,7 +114,6 @@ export const users = [
   }
 ];
 
-
 // To be removed
 export const messages = [
   {
@@ -154,11 +153,10 @@ export const messages = [
   }
 ];
 
-
 // To be removed
 export const currentUser = {
   id: 1,
-  profile: "/icons/userAvatar.png",
+  profile: "/icons/avatar.jpeg",
   name: "Shubham mishra",
   lastMessage: "Hi",
   lastMessageTime: "02:32AM",

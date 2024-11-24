@@ -23,7 +23,7 @@ const Chats = () => {
           />
         </div>
       )}
-      <div className="p-4 bg-transparent size-full overflow-y-auto z-10">
+      <div className="p-4 bg-transparent size-full overflow-y-auto overflow-x-hidden z-10">
         {messages.length === 0 ? (
           <NoMessage />
         ) : (
@@ -41,7 +41,7 @@ const Chats = () => {
               <div key={index}>
                 {message.sender === currentUser.id ? (
                   <div className="chat chat-end">
-                    <div className="chat-bubble bg-green-500 text-black">
+                    <div className="chat-bubble bg-green-500 text-black break-words">
                       {message.message}
                     </div>
                     <div className="chat-footer flex items-center gap-1 text-slate-500">

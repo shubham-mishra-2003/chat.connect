@@ -26,9 +26,9 @@ const ChatHeader = () => {
         <Image
           src={chatUser?.profile || "/icons/userAvatar.png"}
           alt="profile"
-          height={45}
+          height={50}
           width={45}
-          className="rounded-full"
+          className="rounded-full h-12 w-12"
         />
         <div className="flex flex-col">
           <span

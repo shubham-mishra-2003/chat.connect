@@ -51,7 +51,6 @@ const MessageInput = () => {
         </PopoverTrigger>
         <PopoverContent className="ml-60">Files</PopoverContent>
       </Popover>
-
       <textarea
         autoFocus={true}
         value={inputValue}
@@ -70,7 +69,7 @@ const MessageInput = () => {
           aria-label="Send message"
           height={45}
           width={45}
-          className="p-2 dark:hover:bg-slate-700 hover:bg-slate-300 rounded-md cursor-pointer"
+          className="p-2 hover:bg-green-600 bg-green-500 text-black rounded-md cursor-pointer"
           onClick={handleSend}
         />
       ) : (
@@ -78,7 +77,7 @@ const MessageInput = () => {
           aria-label="Use microphone"
           height={45}
           width={45}
-          className="p-2 dark:hover:bg-slate-700 hover:bg-slate-300 rounded-md cursor-pointer"
+          className="p-2 hover:bg-green-600 bg-green-500 text-black rounded-md cursor-pointer"
         />
       )}
     </div>
